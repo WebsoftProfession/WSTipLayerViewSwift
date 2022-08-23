@@ -2,19 +2,18 @@
 //  WSTipLayerView.swift
 //  WSTipLayerView
 //
-//  Created by praveen on 23/08/22.
+//  Created by WebsoftProfession on 23/08/22.
 //
 
 import Foundation
 import UIKit
-import QuartzCore
 
-enum WSTipArrowStyle {
+public enum WSTipArrowStyle {
     case CenterTop
     case CenterBottom
 };
 
-protocol WSTipLayerViewDelegate: NSObject {
+public protocol WSTipLayerViewDelegate: NSObject {
     
     //required
     func numberOfTips() -> Int
@@ -27,7 +26,7 @@ protocol WSTipLayerViewDelegate: NSObject {
     func attributesForTipViewMessageAtIndex(index: Int) ->[NSAttributedString.Key: Any]
 }
 
-extension WSTipLayerViewDelegate {
+public extension WSTipLayerViewDelegate {
     
     func didTapOnTipIndex(index: Int) {
         
@@ -37,15 +36,15 @@ extension WSTipLayerViewDelegate {
     }
 }
 
-class WSTipLayerView: UIView {
+public class WSTipLayerView: UIView {
     var layerImage:UIImage?
-    weak var tipDelegate:WSTipLayerViewDelegate?
+    public weak var tipDelegate:WSTipLayerViewDelegate?
     var shadowColor:UIColor?;
     var arrowColor:UIColor?;
     var tipViewIndex:Int = 0
     
     
-    func showWSTipView() {
+    public func showWSTipView() {
         if self.tipDelegate != nil {
             let controller = self.tipDelegate as! UIViewController;
             if let image = self.getLayerImageOfController(controller: controller) {
@@ -82,7 +81,7 @@ class WSTipLayerView: UIView {
     
     
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         // Drawing code
         
         let backgroundPath = UIBezierPath.init(rect: rect)
@@ -266,7 +265,7 @@ class WSTipLayerView: UIView {
 }
 
 extension WSTipLayerView {
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if let touch = touches.first {
             let touchPoint = touch.location(in: self)
